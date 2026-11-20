@@ -21,8 +21,9 @@ function cloneSeed() {
   return JSON.parse(JSON.stringify(SEED));
 }
 
-async function loadState(env) {
-  if (stateCache && Array.isArray(stateCache.digitalProducts)) return stateCache;
+async function loadState(env, opts) {
+  const fresh = !!(opts && opts.fresh);
+  if (!fresh && stateCache && Array.isArray(stateCache.digitalProducts)) return stateCache;
   try {
     const raw = await env.PLAYBEAT_KV.get(CATALOG_KEY);
     if (raw) {
@@ -35,8 +36,11 @@ async function loadState(env) {
   } catch {
     /* fall through to seed */
   }
-  stateCache = cloneSeed();
-  return stateCache;
+  if (!fresh) {
+    stateCache = cloneSeed();
+    return stateCache;
+  }
+  return stateCache && Array.isArray(stateCache.digitalProducts) ? stateCache : cloneSeed();
 }
 
 async function saveState(env, state) {
@@ -605,7 +609,9 @@ export default {
 
       // ---- Admin catalog ----
       if (path === '/api/admin/catalog' && method === 'GET') {
-        const state = await loadState(env);
+        // Admin console must see current CRM leads / catalog: bypass the
+        // per-isolate cache and read KV fresh (buyer endpoints keep the cache).
+        const state = await loadState(env, { fresh: true });
         return json({
           digitalProducts: state.digitalProducts || [],
           businessServices: state.businessServices || [],
