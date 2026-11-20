@@ -11,6 +11,7 @@ import {
   LayoutDashboard,
   Layers,
   LockKeyhole,
+  PhoneCall,
   Plus,
   RefreshCw,
   Shield,
@@ -36,11 +37,12 @@ import type {
 } from '../types/store';
 import { adminFetch, adminLogout } from '../lib/adminAuth';
 import { CatalogTableView } from './CatalogTableView';
+import { CrmPlatformView } from './CrmPlatformView';
 import { IntegrationsView, type WebhookLogEntry } from './IntegrationsView';
 import { IzokoCrmView } from './IzokoCrmView';
 import { OrdersView } from './OrdersView';
 
-export type AdminTab = 'overview' | 'extraction' | 'sections' | 'orders' | 'crm' | 'diagnostics';
+export type AdminTab = 'overview' | 'extraction' | 'sections' | 'orders' | 'crm' | 'crm-platform' | 'diagnostics';
 type SectionManagerTab = 'section1' | 'section2' | 'section3-channels' | 'section3-plans';
 
 interface AdminPanelViewProps {
@@ -400,6 +402,11 @@ export function AdminPanelView({
       label: 'Izoko CRM & Catalog',
       icon: Inbox,
       count: serviceInquiries.filter((i) => i.status === 'NEW' || i.status === 'CONTACTED').length,
+    },
+    {
+      id: 'crm-platform',
+      label: 'CRM Platform',
+      icon: PhoneCall,
     },
     { id: 'diagnostics', label: 'Gateway Diagnostics', icon: Activity },
   ];
@@ -1197,7 +1204,10 @@ export function AdminPanelView({
         />
       )}
 
-      {/* ══════════════ TAB 6: GATEWAY DIAGNOSTICS (ADMIN ONLY) ══════════════ */}
+      {/* ══════════════ TAB 6: CRM PLATFORM (playbeat-crm-platform) ══════════════ */}
+      {activeTab === 'crm-platform' && <CrmPlatformView onShowToast={onShowToast} />}
+
+      {/* ══════════════ TAB 7: GATEWAY DIAGNOSTICS (ADMIN ONLY) ══════════════ */}
       {activeTab === 'diagnostics' && (
         <div className="-mx-4 sm:-mx-6 -my-8">
           <IntegrationsView
