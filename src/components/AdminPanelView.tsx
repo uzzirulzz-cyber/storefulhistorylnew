@@ -1193,6 +1193,7 @@ export function AdminPanelView({
           liveTvPlans={liveTvPlans}
           serviceInquiries={serviceInquiries}
           onInquiryStatusChange={handleInquiryStatusChange}
+          onRefreshAll={onRefreshAll}
         />
       )}
 

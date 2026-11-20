@@ -623,6 +623,41 @@ export default {
         });
       }
 
+      // ---- Admin stats (izoko console KPIs) ----
+      if (path === '/api/admin/stats' && method === 'GET') {
+        const state = await loadState(env, { fresh: true });
+        const products = Array.isArray(state.digitalProducts) ? state.digitalProducts : [];
+        const published = products.filter((p) => p.published !== false);
+        const groups = {};
+        for (const p of published) {
+          const key = String(p.category || 'Other');
+          groups[key] = (groups[key] || 0) + 1;
+        }
+        const inquiries = Array.isArray(state.serviceInquiries) ? state.serviceInquiries : [];
+        return json({
+          digital: {
+            totalProducts: products.length,
+            published: published.length,
+            inStock: published.filter((p) => p.stockStatus === 'In Stock').length,
+            deals40plus: published.filter((p) => p.discountPercent >= 40).length,
+            under25: published.filter((p) => p.priceUsd > 0 && p.priceUsd <= 25).length,
+            groups,
+            source: 'ElectronicFirst Worldwide',
+            extractedAt: state.lastPublishedSyncAt || null,
+          },
+          services: { total: Array.isArray(state.businessServices) ? state.businessServices.length : 0 },
+          liveTv: {
+            channels: Array.isArray(state.liveTvChannels) ? state.liveTvChannels.length : 0,
+            plans: Array.isArray(state.liveTvPlans) ? state.liveTvPlans.length : 0,
+          },
+          crm: {
+            total: inquiries.length,
+            open: inquiries.filter((i) => i.status === 'NEW' || i.status === 'CONTACTED').length,
+          },
+          generatedAt: new Date().toISOString(),
+        });
+      }
+
       if ((path === '/api/admin/electronicfirst/sync' || path === '/api/electronicfirst/sync') && method === 'POST') {
         const state = await loadState(env);
         const sync = lastSyncStatus(state);
