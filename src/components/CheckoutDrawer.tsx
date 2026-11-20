@@ -14,6 +14,7 @@ import {
   X,
 } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { renderGoogleSurveyOptIn } from '../lib/googleReviews';
 import type {
   BusinessService,
   CartItem,
@@ -134,6 +135,14 @@ export function CheckoutDrawer({
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [completedOrder, setCompletedOrder] = useState<OrderRecord | null>(null);
   const rapidMountRef = useRef<HTMLDivElement | null>(null);
+
+  // Google Customer Reviews — survey opt-in fires on the confirmation
+  // screen for completed (paid & fulfilled) purchases only.
+  useEffect(() => {
+    if (completedOrder && completedOrder.status === 'PAID_FULFILLED') {
+      renderGoogleSurveyOptIn(completedOrder);
+    }
+  }, [completedOrder]);
 
   const cartLines = useMemo(() => {
     return cart
