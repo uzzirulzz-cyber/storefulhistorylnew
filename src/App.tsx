@@ -63,6 +63,11 @@ function readInitialViewFromLocation(): ActiveView {
   return 'digital-store';
 }
 
+function readInitialProductSku(): string | null {
+  const match = window.location.pathname.match(/^\/product\/([^/]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 function viewToPath(view: ActiveView): string {
   switch (view) {
     case 'business-services':
@@ -105,6 +110,9 @@ export default function App() {
   // Admin password gate: /admin stays locked until a valid session token exists.
   const [adminAuthOk, setAdminAuthOk] = useState<boolean>(() => hasAdminSession());
 
+  // Google Shopping / shared links land on /product/<sku> — open the product modal.
+  const [pendingProductSku, setPendingProductSku] = useState<string | null>(() => readInitialProductSku());
+
   const [searchQuery, setSearchQuery] = useState('');
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
@@ -133,6 +141,22 @@ export default function App() {
     window.addEventListener(ADMIN_UNAUTHORIZED_EVENT, onAdminUnauthorized);
     return () => window.removeEventListener(ADMIN_UNAUTHORIZED_EVENT, onAdminUnauthorized);
   }, []);
+
+  // Resolve /product/<sku> deep links once the catalog is available. The
+  // preview list (first 120) arrives first; the full index hydration follows.
+  useEffect(() => {
+    if (!pendingProductSku) return;
+    const found = buyerDigitalProducts.find(
+      (p) => p.sku === pendingProductSku || p.publicCode === pendingProductSku,
+    );
+    if (found) {
+      setInspectedProduct(found);
+      setPendingProductSku(null);
+      return;
+    }
+    // Hydrated list loaded but SKU unknown — stop waiting.
+    if (buyerDigitalProducts.length > 150) setPendingProductSku(null);
+  }, [buyerDigitalProducts, pendingProductSku]);
 
   useEffect(() => {
     if (!toastMessage) return;
