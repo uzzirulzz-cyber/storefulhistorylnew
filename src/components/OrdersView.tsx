@@ -9,6 +9,7 @@ import {
   XCircle,
 } from 'lucide-react';
 import { useState } from 'react';
+import { adminFetch } from '../lib/adminAuth';
 import type { OrderRecord } from '../types/store';
 
 interface OrdersViewProps {
@@ -40,7 +41,7 @@ export function OrdersView({
   const handleApproveManual = async (orderId: string) => {
     setBusyOrderId(orderId);
     try {
-      const res = await fetch(`/api/orders/${encodeURIComponent(orderId)}/approve-manual`, {
+      const res = await adminFetch(`/api/orders/${encodeURIComponent(orderId)}/approve-manual`, {
         method: 'POST',
       });
       const data = await res.json();

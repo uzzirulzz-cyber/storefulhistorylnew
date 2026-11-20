@@ -10,6 +10,7 @@ import {
   KeyRound,
   LayoutDashboard,
   Layers,
+  LockKeyhole,
   Plus,
   RefreshCw,
   Shield,
@@ -33,6 +34,7 @@ import type {
   ServicePackageLevel,
   TvChannelCategory,
 } from '../types/store';
+import { adminFetch, adminLogout } from '../lib/adminAuth';
 import { CatalogTableView } from './CatalogTableView';
 import { IntegrationsView, type WebhookLogEntry } from './IntegrationsView';
 import { OrdersView } from './OrdersView';
@@ -81,6 +83,11 @@ export function AdminPanelView({
   const [sectionSubTab, setSectionSubTab] = useState<SectionManagerTab>('section1');
   const [saving, setSaving] = useState(false);
 
+  const handleLockAdmin = async () => {
+    await adminLogout();
+    onShowToast('Admin panel locked. Password required on next visit.');
+  };
+
   // Add Section 1 Digital Product form
   const [newProdName, setNewProdName] = useState('');
   const [newProdCat, setNewProdCat] = useState<ProductCategory>('PC Games');
@@ -120,7 +127,7 @@ export function AdminPanelView({
 
   const toggleProductPublish = async (p: Product) => {
     try {
-      const res = await fetch('/api/admin/products', {
+      const res = await adminFetch('/api/admin/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...p, published: p.published === false }),
@@ -135,7 +142,7 @@ export function AdminPanelView({
 
   const deleteProduct = async (sku: string, name: string) => {
     try {
-      await fetch(`/api/admin/products/${encodeURIComponent(sku)}`, { method: 'DELETE' });
+      await adminFetch(`/api/admin/products/${encodeURIComponent(sku)}`, { method: 'DELETE' });
       await onRefreshAll();
       onShowToast(`Removed ${name} from Section 1.`);
     } catch {
@@ -148,7 +155,7 @@ export function AdminPanelView({
     if (!newProdName.trim()) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/admin/products', {
+      const res = await adminFetch('/api/admin/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -175,7 +182,7 @@ export function AdminPanelView({
 
   const toggleServicePublish = async (s: BusinessService) => {
     try {
-      await fetch('/api/admin/services', {
+      await adminFetch('/api/admin/services', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...s, published: !s.published }),
@@ -189,7 +196,7 @@ export function AdminPanelView({
 
   const deleteService = async (id: string, name: string) => {
     try {
-      await fetch(`/api/admin/services/${encodeURIComponent(id)}`, { method: 'DELETE' });
+      await adminFetch(`/api/admin/services/${encodeURIComponent(id)}`, { method: 'DELETE' });
       await onRefreshAll();
       onShowToast(`Removed ${name} from Section 2.`);
     } catch {
@@ -202,7 +209,7 @@ export function AdminPanelView({
     if (!newSvcName.trim()) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/admin/services', {
+      const res = await adminFetch('/api/admin/services', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -234,7 +241,7 @@ export function AdminPanelView({
 
   const toggleChannelPublish = async (ch: LiveTvChannel) => {
     try {
-      await fetch('/api/admin/livetv/channels', {
+      await adminFetch('/api/admin/livetv/channels', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...ch, published: !ch.published }),
@@ -248,7 +255,7 @@ export function AdminPanelView({
 
   const deleteChannel = async (id: string, name: string) => {
     try {
-      await fetch(`/api/admin/livetv/channels/${encodeURIComponent(id)}`, { method: 'DELETE' });
+      await adminFetch(`/api/admin/livetv/channels/${encodeURIComponent(id)}`, { method: 'DELETE' });
       await onRefreshAll();
       onShowToast(`Removed ${name} from Section 3 LIVE TV.`);
     } catch {
@@ -261,7 +268,7 @@ export function AdminPanelView({
     if (!newChName.trim()) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/admin/livetv/channels', {
+      const res = await adminFetch('/api/admin/livetv/channels', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -288,7 +295,7 @@ export function AdminPanelView({
 
   const togglePlanPublish = async (pl: LiveTvPlan) => {
     try {
-      await fetch('/api/admin/livetv/plans', {
+      await adminFetch('/api/admin/livetv/plans', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...pl, published: !pl.published }),
@@ -302,7 +309,7 @@ export function AdminPanelView({
 
   const deletePlan = async (id: string, name: string) => {
     try {
-      await fetch(`/api/admin/livetv/plans/${encodeURIComponent(id)}`, { method: 'DELETE' });
+      await adminFetch(`/api/admin/livetv/plans/${encodeURIComponent(id)}`, { method: 'DELETE' });
       await onRefreshAll();
       onShowToast(`Removed ${name} from LIVE TV plans.`);
     } catch {
@@ -315,7 +322,7 @@ export function AdminPanelView({
     if (!newPlanName.trim()) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/admin/livetv/plans', {
+      const res = await adminFetch('/api/admin/livetv/plans', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -341,7 +348,7 @@ export function AdminPanelView({
 
   const handleInquiryStatus = async (id: string, status: ServiceInquiry['status']) => {
     try {
-      await fetch(`/api/admin/inquiries/${encodeURIComponent(id)}`, {
+      await adminFetch(`/api/admin/inquiries/${encodeURIComponent(id)}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
@@ -405,6 +412,14 @@ export function AdminPanelView({
           >
             <ArrowLeft className="w-3.5 h-3.5 text-[#1ea0ff]" />
             Buyer Storefront
+          </button>
+          <button
+            type="button"
+            onClick={() => void handleLockAdmin()}
+            className="rounded-full px-4 h-9 text-xs font-bold bg-rose-500/10 border border-rose-500/50 text-rose-200 hover:bg-rose-500/20 inline-flex items-center gap-1.5 cursor-pointer"
+          >
+            <LockKeyhole className="w-3.5 h-3.5" />
+            Lock Admin
           </button>
         </div>
       </div>

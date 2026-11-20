@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { AdminGate } from './components/AdminGate';
 import { AdminPanelView, type AdminTab } from './components/AdminPanelView';
 import { AiChatBoxSection } from './components/AiChatBoxSection';
 import { AuthModal } from './components/AuthModal';
@@ -22,6 +23,11 @@ import type {
   PublicStoreConfig,
   ServiceInquiry,
 } from './types/store';
+import {
+  ADMIN_UNAUTHORIZED_EVENT,
+  adminFetch,
+  hasAdminSession,
+} from './lib/adminAuth';
 
 const CART_STORAGE_KEY = 'pb_cart_v3';
 
@@ -96,6 +102,9 @@ export default function App() {
   const [webhookLogs, setWebhookLogs] = useState<WebhookLogEntry[]>([]);
   const [isSyncing, setIsSyncing] = useState(false);
 
+  // Admin password gate: /admin stays locked until a valid session token exists.
+  const [adminAuthOk, setAdminAuthOk] = useState<boolean>(() => hasAdminSession());
+
   const [searchQuery, setSearchQuery] = useState('');
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
@@ -116,6 +125,13 @@ export default function App() {
 
   const showToast = useCallback((msg: string) => {
     setToastMessage(msg);
+  }, []);
+
+  // Any 401 from an admin API call re-locks the admin panel.
+  useEffect(() => {
+    const onAdminUnauthorized = () => setAdminAuthOk(false);
+    window.addEventListener(ADMIN_UNAUTHORIZED_EVENT, onAdminUnauthorized);
+    return () => window.removeEventListener(ADMIN_UNAUTHORIZED_EVENT, onAdminUnauthorized);
   }, []);
 
   useEffect(() => {
@@ -175,6 +191,24 @@ export default function App() {
         const data = await catRes.json();
         if (Array.isArray(data.section1DigitalProducts)) {
           setBuyerDigitalProducts(data.section1DigitalProducts);
+          // Hydrate the FULL catalog (6,500+ products) from the static index
+          // when the API preview only returns the first page.
+          const total = Number(data.section1Total || 0);
+          const indexUrl = String(data.section1IndexUrl || '');
+          if (total > data.section1DigitalProducts.length && indexUrl) {
+            void (async () => {
+              try {
+                const idxRes = await fetch(indexUrl);
+                if (!idxRes.ok) return;
+                const idx = await idxRes.json();
+                if (Array.isArray(idx.products) && idx.products.length > 0) {
+                  setBuyerDigitalProducts(idx.products);
+                }
+              } catch {
+                // preview list stays in place
+              }
+            })();
+          }
         }
         if (Array.isArray(data.section2BusinessServices)) {
           setBuyerBusinessServices(data.section2BusinessServices);
@@ -198,9 +232,9 @@ export default function App() {
   const fetchAdminData = useCallback(async () => {
     try {
       const [adminRes, ordersRes, diagRes] = await Promise.all([
-        fetch('/api/admin/catalog'),
-        fetch('/api/orders'),
-        fetch('/api/integrations/readiness'),
+        adminFetch('/api/admin/catalog'),
+        adminFetch('/api/orders'),
+        adminFetch('/api/integrations/readiness'),
       ]);
       if (adminRes.ok) {
         const data = await adminRes.json();
@@ -237,7 +271,7 @@ export default function App() {
   const handleSyncElectronicFirst = useCallback(async () => {
     setIsSyncing(true);
     try {
-      const res = await fetch('/api/admin/electronicfirst/sync', { method: 'POST' });
+      const res = await adminFetch('/api/admin/electronicfirst/sync', { method: 'POST' });
       const data = await res.json();
       if (data.sync) {
         setSyncStatus(data.sync);
@@ -255,7 +289,7 @@ export default function App() {
     (view: ActiveView, adminTab: AdminTab = 'overview') => {
       if (view === 'admin') {
         setAdminInitialTab(adminTab);
-        void fetchAdminData();
+        if (hasAdminSession()) void fetchAdminData();
       }
       setActiveView(view);
       setSearchQuery('');
@@ -388,8 +422,17 @@ export default function App() {
           </>
         )}
 
-        {/* ADMIN PANEL */}
-        {activeView === 'admin' && (
+        {/* ADMIN PANEL — password protected at /admin */}
+        {activeView === 'admin' && !adminAuthOk && (
+          <AdminGate
+            onUnlocked={() => {
+              setAdminAuthOk(true);
+              void fetchAdminData();
+            }}
+            onBackToStorefront={() => handleSelectView('digital-store')}
+          />
+        )}
+        {activeView === 'admin' && adminAuthOk && (
           <AdminPanelView
             key={adminInitialTab}
             initialTab={adminInitialTab}

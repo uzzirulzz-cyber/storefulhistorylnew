@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import crypto from 'crypto';
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
@@ -47,6 +48,80 @@ async function startServer() {
       },
     }),
   );
+
+  // -------------------------------------------------------------------------
+  // Admin password gate — same token scheme as the Cloudflare Worker
+  // -------------------------------------------------------------------------
+  const ADMIN_SESSION_TTL_MS = 12 * 60 * 60 * 1000;
+  const FALLBACK_ADMIN_PASSWORD = 'Playbeat@Admin2026';
+  const adminSessionSecret = () =>
+    `${String(process.env.ADMIN_PASSWORD || FALLBACK_ADMIN_PASSWORD)}::playbeat-admin-session-v1`;
+
+  function signAdminToken(expiresAtMs: number): string {
+    const sig = crypto.createHmac('sha256', adminSessionSecret()).update(`admin:${expiresAtMs}`).digest('hex');
+    return `${expiresAtMs}.${sig}`;
+  }
+
+  function verifyAdminToken(token: string | undefined): boolean {
+    if (!token) return false;
+    const dot = token.indexOf('.');
+    if (dot <= 0) return false;
+    const exp = Number(token.slice(0, dot));
+    const sig = token.slice(dot + 1);
+    if (!Number.isFinite(exp) || exp < Date.now()) return false;
+    const expected = crypto.createHmac('sha256', adminSessionSecret()).update(`admin:${exp}`).digest('hex');
+    try {
+      return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(sig));
+    } catch {
+      return false;
+    }
+  }
+
+  const loginAttempts = new Map<string, { fails: number; lockUntil: number }>();
+  app.post('/api/admin/login', (req, res) => {
+    const ip = req.ip || 'unknown';
+    const now = Date.now();
+    const rec = loginAttempts.get(ip) || { fails: 0, lockUntil: 0 };
+    if (rec.lockUntil > now) {
+      res.status(429).json({
+        ok: false,
+        error: `Too many failed attempts. Try again in ${Math.ceil((rec.lockUntil - now) / 1000)}s.`,
+        code: 'ADMIN_THROTTLED',
+      });
+      return;
+    }
+    const password = String(req.body?.password || '');
+    if (!password || password !== String(process.env.ADMIN_PASSWORD || FALLBACK_ADMIN_PASSWORD)) {
+      const updated = { fails: rec.fails + 1, lockUntil: rec.fails + 1 >= 5 ? now + 5 * 60 * 1000 : 0 };
+      loginAttempts.set(ip, updated);
+      res.status(401).json({ ok: false, error: 'Incorrect admin password.', code: 'ADMIN_BAD_PASSWORD' });
+      return;
+    }
+    loginAttempts.delete(ip);
+    const expiresAtMs = Date.now() + ADMIN_SESSION_TTL_MS;
+    res.json({ ok: true, token: signAdminToken(expiresAtMs), expiresAt: new Date(expiresAtMs).toISOString() });
+  });
+
+  // Path-aware guard: only admin surfaces require the bearer token. Public
+  // checkout/storefront endpoints pass straight through.
+  app.use((req, res, next) => {
+    const path = req.path.replace(/\/+$/, '') || '/';
+    const method = req.method.toUpperCase();
+    const protectedRoute =
+      (path.startsWith('/api/admin/') && !(path === '/api/admin/login' && method === 'POST')) ||
+      (path === '/api/orders' && method === 'GET') ||
+      (path.startsWith('/api/orders/') && path.endsWith('/approve-manual') && method === 'POST') ||
+      (path.startsWith('/api/orders/') && method === 'DELETE') ||
+      (path === '/api/integrations/readiness' && method === 'GET');
+    if (!protectedRoute) return next();
+    const header = req.headers.authorization || '';
+    const token = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
+    if (!verifyAdminToken(token)) {
+      res.status(401).json({ ok: false, error: 'Admin sign-in required.', code: 'ADMIN_AUTH_REQUIRED' });
+      return;
+    }
+    next();
+  });
 
   // -------------------------------------------------------------------------
   // Public Storefront APIs (Sanitized — Zero Confidential Supplier Details)

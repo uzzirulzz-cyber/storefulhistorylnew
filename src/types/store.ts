@@ -219,6 +219,9 @@ export interface PublicStoreConfig {
     environment: 'TEST' | 'LIVE';
     sdkUrl: string;
   };
+  electronicFirst?: {
+    configured: boolean;
+  };
 }
 
 export interface IntegrationReadiness {
