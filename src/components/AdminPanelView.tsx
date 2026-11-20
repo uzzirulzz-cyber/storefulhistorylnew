@@ -37,9 +37,10 @@ import type {
 import { adminFetch, adminLogout } from '../lib/adminAuth';
 import { CatalogTableView } from './CatalogTableView';
 import { IntegrationsView, type WebhookLogEntry } from './IntegrationsView';
+import { IzokoCrmView } from './IzokoCrmView';
 import { OrdersView } from './OrdersView';
 
-export type AdminTab = 'overview' | 'extraction' | 'sections' | 'orders' | 'diagnostics';
+export type AdminTab = 'overview' | 'extraction' | 'sections' | 'orders' | 'crm' | 'diagnostics';
 type SectionManagerTab = 'section1' | 'section2' | 'section3-channels' | 'section3-plans';
 
 interface AdminPanelViewProps {
@@ -57,6 +58,7 @@ interface AdminPanelViewProps {
   onSyncElectronicFirst: () => Promise<void>;
   onRefreshAll: () => Promise<void>;
   onOrderUpdated: (order: OrderRecord) => void;
+  onInquiryUpdated: (inquiry: ServiceInquiry) => void;
   onBackToStorefront: () => void;
   onShowToast: (msg: string) => void;
 }
@@ -76,6 +78,7 @@ export function AdminPanelView({
   onSyncElectronicFirst,
   onRefreshAll,
   onOrderUpdated,
+  onInquiryUpdated,
   onBackToStorefront,
   onShowToast,
 }: AdminPanelViewProps) {
@@ -86,6 +89,23 @@ export function AdminPanelView({
   const handleLockAdmin = async () => {
     await adminLogout();
     onShowToast('Admin panel locked. Password required on next visit.');
+  };
+
+  // Izoko CRM — move a lead through the pipeline (NEW → CONTACTED → QUOTED → WON/LOST)
+  const handleInquiryStatusChange = async (id: string, status: ServiceInquiry['status']) => {
+    try {
+      const res = await adminFetch(`/api/admin/inquiries/${encodeURIComponent(id)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Status update failed.');
+      onInquiryUpdated((data.inquiry as ServiceInquiry) || { ...serviceInquiries.find((i) => i.id === id)!, status });
+      onShowToast(`Lead marked as ${status.charAt(0) + status.slice(1).toLowerCase()}.`);
+    } catch (err) {
+      onShowToast(err instanceof Error ? err.message : 'Status update failed.');
+    }
   };
 
   // Add Section 1 Digital Product form
@@ -374,6 +394,12 @@ export function AdminPanelView({
       label: 'Orders & Inquiries',
       icon: ShoppingBag,
       count: orders.length + serviceInquiries.length,
+    },
+    {
+      id: 'crm',
+      label: 'Izoko CRM & Catalog',
+      icon: Inbox,
+      count: serviceInquiries.filter((i) => i.status === 'NEW' || i.status === 'CONTACTED').length,
     },
     { id: 'diagnostics', label: 'Gateway Diagnostics', icon: Activity },
   ];
@@ -1158,7 +1184,19 @@ export function AdminPanelView({
         </div>
       )}
 
-      {/* ══════════════ TAB 5: GATEWAY DIAGNOSTICS (ADMIN ONLY) ══════════════ */}
+      {/* ══════════════ TAB 5: IZOKO CRM & CATALOG (ADMIN ONLY) ══════════════ */}
+      {activeTab === 'crm' && (
+        <IzokoCrmView
+          digitalProducts={digitalProducts}
+          businessServices={businessServices}
+          liveTvChannels={liveTvChannels}
+          liveTvPlans={liveTvPlans}
+          serviceInquiries={serviceInquiries}
+          onInquiryStatusChange={handleInquiryStatusChange}
+        />
+      )}
+
+      {/* ══════════════ TAB 6: GATEWAY DIAGNOSTICS (ADMIN ONLY) ══════════════ */}
       {activeTab === 'diagnostics' && (
         <div className="-mx-4 sm:-mx-6 -my-8">
           <IntegrationsView

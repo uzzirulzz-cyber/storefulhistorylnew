@@ -87,7 +87,7 @@ export interface ServiceInquiry {
   customerPhone: string;
   companyName: string;
   notes: string;
-  status: 'NEW' | 'CONTACTED' | 'QUOTED' | 'WON';
+  status: 'NEW' | 'CONTACTED' | 'QUOTED' | 'WON' | 'LOST';
   createdAt: string;
 }
 

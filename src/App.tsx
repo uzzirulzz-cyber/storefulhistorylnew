@@ -482,6 +482,9 @@ export default function App() {
             onSyncElectronicFirst={handleSyncElectronicFirst}
             onRefreshAll={refreshAll}
             onOrderUpdated={handleOrderUpsert}
+            onInquiryUpdated={(inq) =>
+              setServiceInquiries((list) => list.map((x) => (x.id === inq.id ? inq : x)))
+            }
             onBackToStorefront={() => handleSelectView('digital-store')}
             onShowToast={showToast}
           />
