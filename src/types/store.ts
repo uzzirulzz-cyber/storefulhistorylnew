@@ -75,6 +75,7 @@ export interface BusinessService {
   featured?: boolean;
   published: boolean;
   quantifiedOutcome?: string;
+  imageUrl?: string;
 }
 
 export interface ServiceInquiry {

@@ -91284,5 +91284,453 @@
       <g:custom_label_0>Xbox</g:custom_label_0>
       <g:custom_label_1>Instant Digital Delivery</g:custom_label_1>
     </item>
+    <item>
+      <g:id>PB-SVC-BW-CORP</g:id>
+      <title>Premium Corporate Business Website</title>
+      <description>High-authority corporate presence engineered for conversion, speed, and executive brand positioning with mobile-first responsive architecture.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-BW-CORP?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/bw-corp.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>540 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Business Websites</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-BW-CMS</g:id>
+      <title>Enterprise Company Website + Admin CMS</title>
+      <description>Scalable corporate website paired with a custom content management dashboard so internal teams publish pages, press releases, and case studies effortlessly.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-BW-CMS?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/bw-cms.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>900 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Business Websites</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-BW-PORTAL</g:id>
+      <title>Custom Multi-page Business Portal</title>
+      <description>Full client-facing business portal combining corporate authority, gated partner/client accounts, document centers, and live ticket desks.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-BW-PORTAL?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/bw-portal.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1080 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Business Websites</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-EC-STORE</g:id>
+      <title>Premium E-Commerce Store</title>
+      <description>High-converting online storefront with fast catalog filtering, cart drawer, checkout workflows, and local + international payment gateway readiness.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-EC-STORE?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/ec-store.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>720 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>E-Commerce</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-EC-DIGI</g:id>
+      <title>Digital Products Marketplace</title>
+      <description>Purpose-built storefront for instant digital keys, licenses, gift cards, and subscriptions with automated code vaults and supplier API sync.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-EC-DIGI?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/ec-digi.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>990 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>E-Commerce</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-EC-PLAT</g:id>
+      <title>Premium E-Commerce Platform (Products + Services + Admin CMS)</title>
+      <description>Flagship unified commerce architecture combining digital/physical products, service packages, customer accounts, and enterprise admin CMS.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-EC-PLAT?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/ec-plat.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1080 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>E-Commerce</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-EC-MULTI</g:id>
+      <title>Multi-category Marketplace + Admin</title>
+      <description>Full multi-vendor or multi-department marketplace platform with vendor onboarding, commission tracking, settlements, and moderation tools.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-EC-MULTI?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/ec-multi.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1440 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>E-Commerce</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-CRM-DASH</g:id>
+      <title>Business CRM Dashboard</title>
+      <description>Centralized customer database, deal stages, follow-up reminders, and staff activity tracking built cleanly for growing teams.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-CRM-DASH?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/crm-dash.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>810 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>CRM &amp; Operations</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-CRM-SALES</g:id>
+      <title>Sales + Leads CRM</title>
+      <description>High-velocity sales pipeline uniting automated lead capture, scoring, agent assignment, and revenue forecasting.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-CRM-SALES?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/crm-sales.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1080 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>CRM &amp; Operations</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-CRM-OMNI</g:id>
+      <title>Omnichannel CRM — Email + WhatsApp + Leads</title>
+      <description>Flagship enterprise communication CRM unifying Email, WhatsApp Business, and sales pipelines in a single real-time command inbox.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-CRM-OMNI?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/crm-omni.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1620 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>CRM &amp; Operations</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-CRM-ENT</g:id>
+      <title>Enterprise Operations &amp; Communication CRM</title>
+      <description>End-to-end operational backbone combining omnichannel CRM, billing, ticketing, branch operations, and executive BI dashboards.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-CRM-ENT?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/crm-ent.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>2160 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>CRM &amp; Operations</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-LEAD-DASH</g:id>
+      <title>Lead Management Dashboard</title>
+      <description>Clean B2B/B2C lead hub for organizing lists, deduplicating prospects, tracking outreach stages, and exporting clean campaign segments.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-LEAD-DASH?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/lead-dash.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>720 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Lead Generation</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-LEAD-AUTO</g:id>
+      <title>Automated Lead Intelligence Platform</title>
+      <description>Automated prospect discovery, contact enrichment, email/phone verification, and CRM push workflows for outbound growth teams.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-LEAD-AUTO?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/lead-auto.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1260 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Lead Generation</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-LEAD-PULSE</g:id>
+      <title>Enterprise Lead Pulse System</title>
+      <description>Flagship PlayBeat Lead Pulse Plus platform — high-density lead discovery, verification, filtering, CRM pipeline, campaigns, and multi-seat governance.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-LEAD-PULSE?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/lead-pulse.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1980 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Lead Generation</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-RE-AGENCY</g:id>
+      <title>Real Estate Agency Website</title>
+      <description>Luxury property showcase website built for agencies and developers with project galleries, installment calculators, and instant WhatsApp agent inquiry.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-RE-AGENCY?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/re-agency.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>720 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Real Estate</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-RE-PORTAL</g:id>
+      <title>Property Listing Portal + Admin</title>
+      <description>Searchable regional property portal with multi-filter discovery (society, phase, marla, budget), verified badges, and agency submission dashboards.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-RE-PORTAL?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/re-portal.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1260 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Real Estate</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-RE-MAPS</g:id>
+      <title>Premium Property Marketplace + Maps/Agents</title>
+      <description>Flagship Lifestyle Atlas real estate portal with interactive map search, verified agent directory, valuation workflows, and scheduled site visits.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-RE-MAPS?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/re-maps.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1790 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Real Estate</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-EDU-WEB</g:id>
+      <title>Online Course Website</title>
+      <description>Modern academy storefront for selling recorded courses, live cohorts, and bootcamps with student enrollment and video lesson access.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-EDU-WEB?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/edu-web.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>720 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Education</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-EDU-LMS</g:id>
+      <title>Learning Management System (LMS)</title>
+      <description>Complete institutional LMS featuring multi-instructor courses, timed quizzes, assignment grading, attendance, and automated certificates.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-EDU-LMS?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/edu-lms.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1260 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Education</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-EDU-AI</g:id>
+      <title>AI Language Learning Platform</title>
+      <description>Flagship University of Diverse Languages architecture — courses, students, AI conversation tutor, proctored assessments, and verifiable digital certificates.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-EDU-AI?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/edu-ai.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1790 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Education</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-FIN-DASH</g:id>
+      <title>Financial Analytics Dashboard</title>
+      <description>Real-time executive financial dashboard displaying revenue ledgers, cash-flow trends, settlement reconciliation, and exportable statements.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-FIN-DASH?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/fin-dash.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>900 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>FinTech / Dashboards</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-FIN-ASSET</g:id>
+      <title>Digital Asset Market Dashboard</title>
+      <description>High-frequency market tracking terminal with portfolio allocation, live price feeds, custom watchlists, and alert engines.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-FIN-ASSET?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/fin-asset.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1260 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>FinTech / Dashboards</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-FIN-PLAT</g:id>
+      <title>Custom FinTech Web Platform</title>
+      <description>Compliance-ready FinTech application with KYC onboarding, double-entry wallet ledgers, multi-rail payment orchestration, and audit logging.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-FIN-PLAT?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/fin-plat.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>2160 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>FinTech / Dashboards</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-ADM-DASH</g:id>
+      <title>Custom Admin Dashboard</title>
+      <description>Bespoke internal operations console to manage products, customers, orders, and reports cleanly from a single responsive interface.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-ADM-DASH?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/adm-dash.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>540 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Admin Systems</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-ADM-RBAC</g:id>
+      <title>Enterprise Admin Panel + RBAC</title>
+      <description>Granular role-based administration platform with Super Admin, Manager, Finance, and Support permissions plus immutable action audit trails.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-ADM-RBAC?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/adm-rbac.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1080 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Admin Systems</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-ADM-MULTI</g:id>
+      <title>Multi-role Management Platform</title>
+      <description>Multi-tenant operations platform supporting franchises, regional branches, partner portals, and centralized headquarters reporting.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-ADM-MULTI?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/adm-multi.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1620 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Admin Systems</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-AUTO-WF</g:id>
+      <title>Business Workflow Automation</title>
+      <description>Eliminate manual copy-paste tasks by connecting forms, spreadsheets, invoicing, WhatsApp notifications, and order fulfillment pipelines.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-AUTO-WF?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/auto-wf.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>720 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Automation</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-AUTO-CRM</g:id>
+      <title>CRM + Marketing Automation</title>
+      <description>Automated lead nurturing, abandoned cart recovery, segmented WhatsApp/email campaigns, and ROI attribution tied directly to your CRM.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-AUTO-CRM?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/auto-crm.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1260 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Automation</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-AUTO-ENT</g:id>
+      <title>Enterprise Automation Suite</title>
+      <description>Full-scale background worker architecture orchestrating inventory syncs, supplier order dispatch, billing reconciliation, and AI triage.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-AUTO-ENT?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/auto-ent.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1790 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Automation</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-CUST-MVP</g:id>
+      <title>MVP Web Application</title>
+      <description>Launch-ready startup MVP engineered rapidly with clean TypeScript architecture, authentication, core product workflows, and cloud deployment.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-CUST-MVP?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/cust-mvp.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>900 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Custom Development</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Basic</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-CUST-SAAS</g:id>
+      <title>SaaS Platform Development</title>
+      <description>Subscription-ready multi-tenant SaaS application complete with workspaces, recurring billing, usage limits, webhooks, and admin controls.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-CUST-SAAS?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/cust-saas.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>1620 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Custom Development</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Professional</g:custom_label_1>
+    </item>
+    <item>
+      <g:id>PB-SVC-CUST-ENT</g:id>
+      <title>Enterprise Custom Web Application</title>
+      <description>Flagship bespoke engineering — fully custom dashboards, portals, SaaS systems, workflow automation, APIs, databases, and enterprise administration.</description>
+      <g:link>https://playbeat.digital/product/PB-SVC-CUST-ENT?utm_source=google-shopping&amp;utm_medium=cpc</g:link>
+      <g:image_link>https://playbeat.digital/img/services/cust-ent.jpg</g:image_link>
+      <g:availability>in stock</g:availability>
+      <g:price>2520 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>Custom Development</g:product_type>
+      <g:custom_label_0>Playbeat Business Service</g:custom_label_0>
+      <g:custom_label_1>Enterprise</g:custom_label_1>
+    </item>
   </channel>
 </rss>

@@ -154,9 +154,18 @@ export default function App() {
       setPendingProductSku(null);
       return;
     }
+    // Services resolve through the services section modal.
+    const svc = buyerBusinessServices.find(
+      (x) => x.sku === pendingProductSku || x.id === pendingProductSku,
+    );
+    if (svc) {
+      window.dispatchEvent(new CustomEvent('pb-inspect-service', { detail: svc.sku }));
+      setPendingProductSku(null);
+      return;
+    }
     // Hydrated list loaded but SKU unknown — stop waiting.
     if (buyerDigitalProducts.length > 150) setPendingProductSku(null);
-  }, [buyerDigitalProducts, pendingProductSku]);
+  }, [buyerDigitalProducts, buyerBusinessServices, pendingProductSku]);
 
   useEffect(() => {
     if (!toastMessage) return;

@@ -9,9 +9,10 @@ import {
   Sparkles,
   X,
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { BusinessService, ServiceCategory, ServicePackageLevel } from '../types/store';
 import type { ActiveView } from './Navbar';
+import { ResilientImage } from './ResilientImage';
 
 interface BusinessServicesSectionProps {
   services: BusinessService[];
@@ -88,6 +89,22 @@ export function BusinessServicesSection({
     const featured = filteredServices.filter((s) => s.featured);
     return featured.length >= 6 ? featured.slice(0, 6) : filteredServices.slice(0, 6);
   }, [filteredServices, showAllServices, selectedCategory, selectedLevel, globalSearch]);
+
+  // /product/<sku> deep links resolve services too (Google Shopping + shared links)
+  useEffect(() => {
+    const onInspectService = (e: Event) => {
+      const sku = (e as CustomEvent<string>).detail;
+      const svc = services.find((x) => x.sku === sku || x.id === sku);
+      if (svc) {
+        setInspectedService(svc);
+        window.requestAnimationFrame(() => {
+          document.getElementById('section2-services')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    };
+    window.addEventListener('pb-inspect-service', onInspectService);
+    return () => window.removeEventListener('pb-inspect-service', onInspectService);
+  }, [services]);
 
   const handleOpenInquiry = (svc: BusinessService) => {
     setInquiryService(svc);
@@ -230,35 +247,48 @@ export function BusinessServicesSection({
           {displayedServices.map((svc) => (
             <article
               key={svc.id}
-              className="edge rounded-2xl p-5 flex flex-col justify-between hover:border-[#2f8bff] transition-all"
+              className="edge rounded-2xl overflow-hidden flex flex-col hover:border-[#2f8bff] hover:shadow-[0_0_28px_-6px_rgba(30,160,255,0.45)] transition-all group"
             >
-              <div>
-                <div className="flex items-center justify-between gap-2 text-[10.5px] font-bold">
-                  <span className="text-[#1ea0ff] uppercase tracking-wide truncate">
+              {/* Visual hero — image-first so the eye lands on the work, not the words */}
+              <button
+                type="button"
+                onClick={() => setInspectedService(svc)}
+                className="relative block w-full cursor-pointer focus-visible:outline-2 focus-visible:outline-[#ffc928]"
+                aria-label={`Inspect ${svc.name}`}
+              >
+                <ResilientImage
+                  src={svc.imageUrl || ''}
+                  alt={`${svc.category} — ${svc.name}`}
+                  fallbackLabel={svc.category}
+                  className="w-full aspect-[16/10] object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#04102ef2] via-[#04102e2e] to-transparent" />
+                <div className="absolute top-2.5 left-3 right-3 flex items-center justify-between gap-2 text-[10.5px] font-bold">
+                  <span className="rounded-full bg-[#030a1fb8] backdrop-blur px-2.5 py-1 border border-white/10 text-[#a9dbff] uppercase tracking-wide truncate">
                     {svc.category}
                   </span>
                   <span
-                    className={`rounded-full px-2.5 py-0.5 border font-mono shrink-0 ${
+                    className={`rounded-full px-2.5 py-1 backdrop-blur border font-mono shrink-0 ${
                       svc.packageLevel === 'Enterprise'
-                        ? 'bg-[#ffd958]/15 border-[#ffd958]/50 text-[#ffd958]'
+                        ? 'bg-[#ffd958]/25 border-[#ffd958]/60 text-[#ffd958]'
                         : svc.packageLevel === 'Professional'
-                          ? 'bg-[#1ea0ff]/15 border-[#1ea0ff]/50 text-[#a9dbff]'
-                          : 'bg-[#040d29] border-[#2154d4] text-[#c8d3ea]'
+                          ? 'bg-[#1ea0ff]/25 border-[#1ea0ff]/60 text-[#d6efff]'
+                          : 'bg-[#030a1fb8] border-white/10 text-[#c8d3ea]'
                     }`}
                   >
                     {svc.packageLevel}
                   </span>
                 </div>
+                <div className="absolute bottom-2.5 left-3 right-3">
+                  <span className="block text-left font-extrabold text-[15px] text-white leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+                    {svc.name}
+                  </span>
+                </div>
+              </button>
 
-                <button
-                  type="button"
-                  onClick={() => setInspectedService(svc)}
-                  className="text-left font-extrabold text-[15.5px] text-[#f2f6ff] hover:text-[#ffd958] leading-snug mt-2.5 cursor-pointer block"
-                >
-                  {svc.name}
-                </button>
-
-                <p className="text-[12px] text-[#c8d3ea] mt-2 leading-relaxed line-clamp-2">
+              <div className="p-4 flex flex-col flex-1 justify-between">
+              <div>
+                <p className="text-[12px] text-[#c8d3ea] leading-relaxed line-clamp-2 mt-1">
                   {svc.shortDescription}
                 </p>
 
@@ -270,20 +300,20 @@ export function BusinessServicesSection({
                 )}
 
                 <ul className="mt-3 space-y-1.5 border-t border-[#1d4ed844] pt-3">
-                  {svc.deliverables.slice(0, 4).map((d) => (
+                  {svc.deliverables.slice(0, 2).map((d) => (
                     <li key={d} className="flex items-start gap-2 text-[11.5px] text-[#d6e1f7]">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#ffc928] shrink-0 mt-0.5" />
                       <span className="line-clamp-1">{d}</span>
                     </li>
                   ))}
-                  {svc.deliverables.length > 4 && (
+                  {svc.deliverables.length > 2 && (
                     <li>
                       <button
                         type="button"
                         onClick={() => setInspectedService(svc)}
                         className="text-[11px] font-bold text-[#1ea0ff] hover:underline cursor-pointer"
                       >
-                        +{svc.deliverables.length - 4} more deliverables · Inspect scope
+                        +{svc.deliverables.length - 2} more deliverables · Inspect scope
                       </button>
                     </li>
                   )}
@@ -328,6 +358,7 @@ export function BusinessServicesSection({
                   </button>
                 </div>
               </div>
+              </div>
             </article>
           ))}
         </div>
@@ -362,6 +393,18 @@ export function BusinessServicesSection({
               </span>
               <span className="text-[#9eb2db] font-mono">{inspectedService.deliveryTime}</span>
             </div>
+
+            {inspectedService.imageUrl && (
+              <div className="relative -m-6 mb-4 h-44 overflow-hidden rounded-t-2xl">
+                <img
+                  src={inspectedService.imageUrl}
+                  alt={inspectedService.name}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#04102e] via-transparent to-transparent" />
+              </div>
+            )}
 
             <h3 className="text-xl font-extrabold text-[#f2f6ff] mt-2 pr-8">
               {inspectedService.name}
